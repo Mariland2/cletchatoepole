@@ -37,19 +37,15 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if pygame.key.get_pressed()[pygame.K_UP]:
-                screen.fill((255, 255, 255))
                 y -= 10
 
             if pygame.key.get_pressed()[pygame.K_DOWN]:
-                screen.fill((255, 255, 255))
                 y += 10
 
             if pygame.key.get_pressed()[pygame.K_LEFT]:
-                screen.fill((255, 255, 255))
                 x -= 10
 
             if pygame.key.get_pressed()[pygame.K_RIGHT]:
-                screen.fill((255, 255, 255))
                 x += 10
         screen.blit(image, (x, y))
         pygame.display.flip()
