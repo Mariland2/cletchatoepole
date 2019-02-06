@@ -1,9 +1,10 @@
 import pygame
-import os
+import os,sys
 
 pygame.init()
-size = width, height = 1000, 1000
+size = width, height = 600, 600
 screen = pygame.display.set_mode(size,)
+
 
 
 def load_image(nich, colorkey=None):
@@ -21,15 +22,49 @@ def load_image(nich, colorkey=None):
     return image
 
 
+def start_screen():
+    intro_text = ["ЗАСТАВКА", "",
+                  "Правила игры",
+                  "Если в правилах несколько строк,",
+                  "приходится выводить их построчно"]
+
+    fon = pygame.transform.scale(load_image('fon.jpg'), (600, 600))
+    screen.blit(fon, (0, 0))
+    font = pygame.font.SysFont('Calibri', 30)
+    text_coord = 200
+    for line in intro_text:
+        string_rendered = font.render(line, 1, pygame.Color('black'))
+        intro_rect = string_rendered.get_rect()
+        text_coord += 10
+        intro_rect.top = text_coord
+        intro_rect.x = 75
+        text_coord += intro_rect.height
+        screen.blit(string_rendered, intro_rect)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                terminate()
+            elif event.type == pygame.KEYDOWN or \
+                    event.type == pygame.MOUSEBUTTONDOWN:
+                return  # начинаем игру
+        pygame.display.flip()
+        # pygame.time.Clock.tick(FPS)
+def terminate():
+    pygame.quit()
+    sys.exit()
+
 x, y = 50, 50
 image = load_image("hero1.png")
 image = pygame.transform.scale(image, (150, 150))
 screen.blit(image, (x, y))
 
+
 o = False
 pygame.mouse.set_visible(o)
 
 running = True
+start_screen()
 while running:
     for event in pygame.event.get():
         screen.fill((255, 255, 255))
@@ -49,3 +84,6 @@ while running:
                 x += 10
         screen.blit(image, (x, y))
         pygame.display.flip()
+
+
+
