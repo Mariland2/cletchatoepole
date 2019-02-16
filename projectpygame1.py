@@ -22,6 +22,7 @@ pygame.init()
 size = width, height = 800, 800
 screen = pygame.display.set_mode(size, )
 all_sprites = pygame.sprite.Group()
+all_sprites1 = pygame.sprite.Group()
 
 
 def draw2(cl):
@@ -38,6 +39,7 @@ def draw(summa):
     text_x = 50
     text_y = 50
     screen.blit(text, (text_x, text_y))
+
 
 def draw3(cl1):
     font7 = pygame.font.SysFont('Magneto', 20)
@@ -88,6 +90,23 @@ def menu():
 class es(pygame.sprite.Sprite):
     image = load_image("pro.png")
     image = pygame.transform.scale(image, (100, 100))
+
+    def __init__(self, group):
+        # НЕОБХОДИМО вызвать конструктор родительского класса Sprite.
+        # Это очень важно!!!
+        super().__init__(group)
+        self.image = sprite.image
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(width)
+        self.rect.y = random.randrange(height)
+
+    def update(self):
+        self.rect = self.rect.move(random.randrange(3) - 1,
+                                   random.randrange(3) - 1)
+
+class es2(pygame.sprite.Sprite):
+    image = load_image("pro.png")
+    image = pygame.transform.scale(image, (75, 75))
 
     def __init__(self, group):
         # НЕОБХОДИМО вызвать конструктор родительского класса Sprite.
@@ -274,7 +293,7 @@ while running:
                 draw(summa)
                 draw2(cl)
                 draw3(cl1)
-                all_sprites.draw(screen)
+                all_sprites1.draw(screen)
 
                 screen.blit(qwe, (100, 700))
                 screen.blit(qwe, (300, 700))
@@ -319,17 +338,24 @@ while running:
                         # можно сразу создавать спрайты с указанием группы
 
                         sprite = pygame.sprite.Sprite(all_sprites)
+                        sprite1= pygame.sprite.Sprite(all_sprites1)
                         # определим его вид
                         sprite.image = load_image("pro.png")
+                        sprite1.image = load_image("pro.png")
                         sprite.image = pygame.transform.scale(sprite.image, (100, 100))
+                        sprite1.image = pygame.transform.scale(sprite.image, (75, 75))
                         # и размеры
                         sprite.rect = sprite.image.get_rect()
+                        sprite1.rect = sprite.image.get_rect()
                         # добавим спрайт в группу
-                        # all_sprites.add(sprite)
+                        all_sprites.add(sprite)
+                        all_sprites1.add(sprite1)
 
                         # задаём случайное местоположение бомбочке
                         sprite.rect.x = random.randrange(width)
                         sprite.rect.y = random.randrange(height)
+                        sprite1.rect.x = sprite.rect.x + 12
+                        sprite1.rect.y = sprite.rect.y + 12
 
                     screen.blit(qwe, (100, 700))
                     screen.blit(qwe, (500, 700))
