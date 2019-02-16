@@ -24,12 +24,27 @@ screen = pygame.display.set_mode(size, )
 all_sprites = pygame.sprite.Group()
 
 
+def draw2(cl):
+    font8 = pygame.font.SysFont('Magneto', 20)
+    text8 = font8.render("added in one click:   " + str(cl // 1), 1, (0, 0, 0))
+    text_x8 = 50
+    text_y8 = 80
+    screen.blit(text8, (text_x8, text_y8))
+
+
 def draw(summa):
     font = pygame.font.SysFont('Magneto', 25)
     text = font.render("On your balance:   " + str(summa // 1), 1, (0, 0, 0))
     text_x = 50
     text_y = 50
     screen.blit(text, (text_x, text_y))
+
+def draw3(cl1):
+    font7 = pygame.font.SysFont('Magneto', 20)
+    text7 = font7.render("added in one second:   " + str(cl1 // 1), 1, (0, 0, 0))
+    text_x7 = 50
+    text_y7 = 110
+    screen.blit(text7, (text_x7, text_y7))
 
 
 def cn1(price):
@@ -96,6 +111,8 @@ def maing():
         screen.blit(qwe, (300, 700))
         screen.blit(qwe, (500, 700))
         draw(summa)
+        draw2(cl)
+        draw3(cl1)
         for event in pygame.event.get():
             # screen.blit(fonn, (0, 0))
             # screen.blit(qwe, (100, 700))
@@ -227,6 +244,8 @@ while running:
     screen.blit(qwe, (300, 700))
     screen.blit(qwe, (500, 700))
     draw(summa)
+    draw2(cl)
+    draw3(cl1)
     cn1(price)
     cn2(price2)
     cn3(price3)
@@ -253,6 +272,8 @@ while running:
                 summa += cl
                 screen.blit(fonn, (0, 0))
                 draw(summa)
+                draw2(cl)
+                draw3(cl1)
                 all_sprites.draw(screen)
 
                 screen.blit(qwe, (100, 700))
@@ -271,6 +292,8 @@ while running:
                     price = price * 1.5
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
                     screen.blit(qwe, (300, 700))
                     screen.blit(qwe, (500, 700))
@@ -282,15 +305,17 @@ while running:
                     pygame.time.delay(65)
             if event.key == pygame.K_2:
                 if summa - price2 >= 0:
-                    cl *= 2
+                    cl = cl * 2
                     n += 1
                     summa = summa - price2
                     price2 = price2 * 1.5
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
 
-                    for i in range(n):
+                    for i in range(1):
                         # можно сразу создавать спрайты с указанием группы
 
                         sprite = pygame.sprite.Sprite(all_sprites)
@@ -321,6 +346,8 @@ while running:
                     price3 = price3 * 1.5
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
 
                     screen.blit(qwe, (100, 700))
@@ -336,6 +363,8 @@ while running:
             if event.key == pygame.K_RETURN:
                 screen.blit(fonn, (0, 0))
                 draw(summa)
+                draw2(cl)
+                draw3(cl1)
                 all_sprites.draw(screen)
 
                 screen.blit(qwe, (100, 700))
@@ -351,6 +380,8 @@ while running:
                 if summa - price >= 0:
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
 
                     screen.blit(qwe, (100, 700))
@@ -365,6 +396,8 @@ while running:
                 if summa - price >= 0:
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
 
                     screen.blit(qwe, (100, 700))
@@ -379,6 +412,8 @@ while running:
                 if summa - price >= 0:
                     screen.blit(fonn, (0, 0))
                     draw(summa)
+                    draw2(cl)
+                    draw3(cl1)
                     all_sprites.draw(screen)
                     screen.blit(qwe, (100, 700))
                     screen.blit(qwe, (300, 700))
@@ -392,6 +427,8 @@ while running:
 
     screen.blit(fonn, (0, 0))
     draw(summa)
+    draw2(cl)
+    draw3(cl1)
     all_sprites.draw(screen)
 
     screen.blit(image, (x, y))
